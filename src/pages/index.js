@@ -5,6 +5,7 @@ import {
 } from "react-router-dom";
 
 import Login from './login';
+import Register from './register';
 import Home from './home';
 
 const Webpages = () => {
@@ -12,6 +13,7 @@ const Webpages = () => {
         <Router>
             <Route exact path="/" component= {Home} />
             <Route path = "/login" component = {Login} />
+            <Route path = "/register" component = {Register} />
         </Router>
     );
 };
