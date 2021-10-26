@@ -1,19 +1,16 @@
 import React from 'react';
-/*
-const Home = () => {
-    return (
-        <div>
-            <h1>Home</h1>
-            <p>Home page</p>
-        </div>
-    );
-};
-*/
+//import { Grid } from '@material-ui/core';
+import { Paper } from '@material-ui/core';
+
 function Home() {
   return (
     <center>
-      <h1 size="10" style={{display: 'inline'}}><h2 color="blue">R</h2><h2 color="blue">o</h2><h2 color="yellow">V</h2><h2 color="red">o</h2><h2 color="red">t</h2></h1>
-      <a href=""></a>
+      <h1></h1>
+      <Paper style={ { width: 1000 } } elevation={8}>
+        <h1 size="10"><font color="blue">R</font><font color="blue">o</font><font color="#cccc00">V</font><font color="red">o</font><font color="red">t</font></h1>
+        <button type="button" className="btn btn-warning btn-outline-danger m-4"><a href="/register">Register</a></button>
+        <button type="button" className="btn btn-danger btn-outline-primary m-4"><a href="/login">Log in</a></button>
+      </Paper>
     </center>
   );
 }

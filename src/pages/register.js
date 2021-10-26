@@ -8,6 +8,7 @@ import {
 } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import LinkContainer from "react-router-bootstrap";
+import { Paper } from '@material-ui/core';
 
 import judete from "../constData";
 
@@ -72,103 +73,108 @@ const Register = () => {
   };
 
   return (
-    <Container fluid>
-      <Form onSubmit={handleSubmit}>
-        <Row className="mb-3">
-          <Form.Group as={Col} controlId="formGridEmail">
-            <Form.Label>Adresa de email</Form.Label>
-            <Form.Control type="email" placeholder="exemplu@adresa.com" value={email} onChange={e => setEmail(e.target.value)}/>
-          </Form.Group>
+    <center>
+      <h1></h1>
+      <Paper style={ { width: 1400, height: 400 } } elevation={8}>
+        <Container fluid>
+          <Form onSubmit={handleSubmit}>
+            <Row className="mb-3">
+              <Form.Group as={Col} controlId="formGridEmail">
+                <Form.Label>Adresa de email</Form.Label>
+                <Form.Control type="email" placeholder="exemplu@adresa.com" value={email} onChange={e => setEmail(e.target.value)}/>
+              </Form.Group>
 
-          <Form.Group as={Col} controlId="formGridName">
-            <Form.Label>Nume complet</Form.Label>
-            <Form.Control type="text" placeholder="Popescu Ioan" value={name} onChange={e => setName(e.target.value)}/>
-          </Form.Group>
-        </Row>
+              <Form.Group as={Col} controlId="formGridName">
+                <Form.Label>Nume complet</Form.Label>
+                <Form.Control type="text" placeholder="Popescu Ioan" value={name} onChange={e => setName(e.target.value)}/>
+              </Form.Group>
+            </Row>
 
-        <Row className="mb-3">
-          <Form.Group as={Col} controlId="formGridPassword">
-            <Form.Label>Parola</Form.Label>
-            <Form.Control type="password" placeholder="Parola" value={password} onChange={e => setPassword(e.target.value)}/>
-          </Form.Group>
+            <Row className="mb-3">
+              <Form.Group as={Col} controlId="formGridPassword">
+                <Form.Label>Parola</Form.Label>
+                <Form.Control type="password" placeholder="Parola" value={password} onChange={e => setPassword(e.target.value)}/>
+              </Form.Group>
 
-          <Form.Group as={Col} controlId="formGridConfirmPassword">
-            <Form.Label>Confirmare parola</Form.Label>
-            <Form.Control type="password" placeholder="Parola" value={passwordConfirm} onChange={e => setPasswordConfirm(e.target.value)}/>
-          </Form.Group>
-        </Row>
+              <Form.Group as={Col} controlId="formGridConfirmPassword">
+                <Form.Label>Confirmare parola</Form.Label>
+                <Form.Control type="password" placeholder="Parola" value={passwordConfirm} onChange={e => setPasswordConfirm(e.target.value)}/>
+              </Form.Group>
+            </Row>
 
-        <Row className="mb-3">
-					<Form.Group as={Col} controlId="formGridCNP">
-						<Form.Label>Cod Numeric Personal</Form.Label>
-						<Form.Control
-							placeholder="1223344550006"
-							value={cnp}
-							onChange={(e) => {
-								setCnp(e.target.value);
-								CNPChange(e.target.value);
-							}}
-							maxLength={13}
-						/>
-					</Form.Group>
-
-					<Form.Group as={Col} controlId="formGridSex">
-            <Form.Label>Sex</Form.Label>
-            <Form.Select disabled defaultValue="F" value={sex}>
-							<option value="F">F</option>
-							<option value="M">M</option>
-            </Form.Select>
-          </Form.Group>
-
-          <Form.Group as={Col} controlId="formGridDate">
-            <Form.Label>Data nasterii</Form.Label>
-            <DatePicker
-              selected={date}
-              onChange={e => setDate(e.target.value)}
-              disabled
-              className="form-control"
-              customInput={
-                <input
-                  type="text"
-                  id="validationCustom01"
-                  placeholder="First name"
+            <Row className="mb-3">
+              <Form.Group as={Col} controlId="formGridCNP">
+                <Form.Label>Cod Numeric Personal</Form.Label>
+                <Form.Control
+                  placeholder="1223344550006"
+                  value={cnp}
+                  onChange={(e) => {
+                    setCnp(e.target.value);
+                    CNPChange(e.target.value);
+                  }}
+                  maxLength={13}
                 />
-              }
-            />
-          </Form.Group>
+              </Form.Group>
 
-          <Form.Group as={Col} controlId="formGridState">
-            <Form.Label>Judet</Form.Label>
-            <Form.Select disabled defaultValue="Sibiu" value={judet}>
-              {judete.map((judet) => (
-                <option value={judet}>{judet}</option>
-              ))}
-            </Form.Select>
-          </Form.Group>
-        </Row>
+              <Form.Group as={Col} controlId="formGridSex">
+                <Form.Label>Sex</Form.Label>
+                <Form.Select disabled defaultValue="F" value={sex}>
+                  <option value="F">F</option>
+                  <option value="M">M</option>
+                </Form.Select>
+              </Form.Group>
 
-				<Row className="mb-3">
-					<Form.Group as={Col}>
-							<Form.Check
-								required
-								name="terms"
-								label="Agree to terms and conditions"
-								feedbackTooltip
-							/>
-					</Form.Group>
+              <Form.Group as={Col} controlId="formGridDate">
+                <Form.Label>Data nasterii</Form.Label>
+                <DatePicker
+                  selected={date}
+                  onChange={e => setDate(e.target.value)}
+                  disabled
+                  className="form-control"
+                  customInput={
+                    <input
+                      type="text"
+                      id="validationCustom01"
+                      placeholder="First name"
+                    />
+                  }
+                />
+              </Form.Group>
 
-					<Button as={Col} variant="primary" type="submit" onClick={e => {handleSubmit(e)}}>
-						Register
-					</Button>
+              <Form.Group as={Col} controlId="formGridState">
+                <Form.Label>Judet</Form.Label>
+                <Form.Select disabled defaultValue="Sibiu" value={judet}>
+                  {judete.map((judet) => (
+                    <option value={judet}>{judet}</option>
+                  ))}
+                </Form.Select>
+              </Form.Group>
+            </Row>
 
-					
-						<Button as={Col} variant="primary" onClick={e => { }}>
-							Login
-						</Button>
-					
-				</Row>
-      </Form>
-    </Container>
+            <Row className="mb-3">
+              <Form.Group as={Col}>
+                  <Form.Check
+                    required
+                    name="terms"
+                    label="Agree to terms and conditions"
+                    feedbackTooltip
+                  />
+              </Form.Group>
+
+              <Button as={Col} variant="primary" type="submit" onClick={e => {handleSubmit(e)}}>
+                Register
+              </Button>
+
+              
+                <Button as={Col} variant="primary" onClick={e => { }}>
+                  Login
+                </Button>
+              
+            </Row>
+          </Form>
+        </Container>
+      </Paper>
+    </center>
   );
 };
 
