@@ -8,7 +8,7 @@ import Cookies from "js-cookie";
 function Home() {
   const account = Cookies.get("account");
 
-  if (account === undefined) {
+  if (account == undefined) {
     return (
       <center>
         <h1></h1>
@@ -20,8 +20,9 @@ function Home() {
             <font color="red">o</font>
             <font color="red">t</font>
           </h1>
+          <p>Esti delogat!</p>
           <button type="button" className="btn btn-ligth btn-outline-info m-4">
-            <a href="/register">Register</a>
+            <a href="/home">Home</a>
           </button>
           <button type="button" className="btn btn-ligth btn-outline-info m-4">
             <a href="/login">Log in</a>
@@ -31,6 +32,7 @@ function Home() {
     );
   }
 
+  Cookies.remove("account");
   return (
     <center>
       <h1></h1>
@@ -42,11 +44,12 @@ function Home() {
           <font color="red">o</font>
           <font color="red">t</font>
         </h1>
+        <p>Delogat!</p>
         <button type="button" className="btn btn-ligth btn-outline-info m-4">
-          <a href="/vot">Vot</a>
+          <a href="/home">Home</a>
         </button>
         <button type="button" className="btn btn-ligth btn-outline-info m-4">
-          <a href="/logout">Log out</a>
+          <a href="/login">Log in</a>
         </button>
       </Paper>
     </center>

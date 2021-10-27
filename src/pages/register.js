@@ -9,10 +9,11 @@ import { collection, doc, setDoc } from "firebase/firestore";
 import db from "../firebase";
 
 import judete from "../constData";
+import Cookies from "js-cookie";
 
 import "react-datepicker/dist/react-datepicker.css";
 
-const Register = () => {
+function Register() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [cnp, setCnp] = useState("");
@@ -32,20 +33,52 @@ const Register = () => {
     history.push(path);
   }; //cnp ex:2690627131268
 
+  const account = Cookies.get("account");
+  if (account !== undefined) {
+    return (
+      <center>
+        <h1></h1>
+        <Paper style={{ width: 1000 }} elevation={8}>
+          <h1 size="10">
+            <font color="blue">R</font>
+            <font color="blue">o</font>
+            <font color="#cccc00">V</font>
+            <font color="red">o</font>
+            <font color="red">t</font>
+          </h1>
+          <p>Esti deja logat!</p>
+          <button type="button" className="btn btn-ligth btn-outline-info m-4">
+            <a href="/home">Home</a>
+          </button>
+        </Paper>
+      </center>
+    );
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
     if (email == "" || name == "" || password == "")
       setAnnouncer("Error: no field can be empty");
-    else if(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email) == false)
+    else if (
+      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+        email
+      ) == false
+    )
       setAnnouncer("Error: invalid email address");
-    else if (!cnpverified) 
-      setAnnouncer("Error: CNP is not valid.");
+    else if (
+      /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/.test(password) ==
+      false
+    )
+      setAnnouncer(
+        "Error: password must be at least 6 characters long and it must include a digit and a symbol"
+      );
+    else if (!cnpverified) setAnnouncer("Error: CNP is not valid.");
     else if (password != passwordConfirm)
       setAnnouncer("Error: passwords don't match");
-    else if (!agreed) 
-      setAnnouncer("Error: you must agree to the terms");
-    else { //everything is alright
+    else if (!agreed) setAnnouncer("Error: you must agree to the terms");
+    else {
+      //everything is alright
       try {
         setAnnouncer("Status: Registering you...");
         setDoc(doc(collection(db, "users"), email), {
@@ -56,9 +89,11 @@ const Register = () => {
           _sex: sex,
           _judet: judet,
           _birthDate: date,
+          _votStatus: "None",
         }).then((r) => {
+          alert("inregistrat!");
           routeChange("");
-        })
+        });
       } catch (e) {
         setAnnouncer("Internal error: user not registered");
       }
@@ -97,7 +132,8 @@ const Register = () => {
       setJudet(judete[jj - 1]);
 
       setCnpVerified(true);
-    } else { //invalid cnp
+    } else {
+      //invalid cnp
       setCnpVerified(false);
     }
   };
@@ -243,7 +279,7 @@ const Register = () => {
       </Paper>
     </center>
   );
-};
+}
 
 export default Register;
 //<button type="button" className="btn btn-warning btn-outline-danger m-4"><a href="/register">Register</a></button>
