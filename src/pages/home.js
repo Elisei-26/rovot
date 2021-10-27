@@ -2,6 +2,14 @@ import React from 'react';
 //import { Grid } from '@material-ui/core';
 import { Paper } from '@material-ui/core';
 
+import { useHistory } from "react-router-dom";
+
+import Cookies from 'js-cookie'
+
+export const getAccessToken = () => Cookies.get('access_token')
+export const getRefreshToken = () => Cookies.get('refresh_token')
+export const isAuthenticated = () => !!getAccessToken()
+
 function Home() {
   return (
     <center>

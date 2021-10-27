@@ -18,10 +18,6 @@ const Webpages = () => {
             <Route path = "/register" component = {Register} />
             <Route path = "/vot" component = {Vot} />
         </Router>
-        <Router>
-          <Route exact path="/" component= {Vot} />
-          <Route path = "/home" component = {Home} />
-        </Router>
       </div>
     );
 };
