@@ -5,10 +5,8 @@ function Vot() {
   const [vot, setVot] = useState(0);
 
   function trimiteVotul(n) {
-    //alert(vot);
     setVot(1);
     console.log(vot);
-    //alert(vot);
   }
 
   if (vot === 0) {
@@ -25,7 +23,7 @@ function Vot() {
                 !!!Atentie!!!
               </h4>
               <h5>
-                Apăsand butonul de deasupra butonului veti vota candidatul:
+                Apăsand butonul de deasupra veti vota candidatul:
               </h5>
             </Paper>
           </Grid>
@@ -38,7 +36,7 @@ function Vot() {
                 !!!Atentie!!!
               </h4>
               <h5>
-                Apăsand butonul de deasupra butonului veti vota candidatul:
+                Apăsand butonul de deasupra veti vota candidatul:
               </h5>
             </Paper>
           </Grid>
@@ -51,7 +49,7 @@ function Vot() {
                 !!!Atentie!!!
               </h4>
               <h5>
-                Apăsand butonul de deasupra butonului veti vota candidatul:
+                Apăsand butonul de deasupra veti vota candidatul:
               </h5>
             </Paper>
           </Grid>
