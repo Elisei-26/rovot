@@ -21,7 +21,7 @@ function Home() {
   return (
     <center>
       <h1></h1>
-      <Paper style={{ width: 1000 }} elevation={8}>
+      <Paper style={{ width: 600 }} elevation={8}>
         <RovotTitle/>
         {account == undefined ? (
           <div>
