@@ -141,9 +141,10 @@ function Register() {
   return (
     <center>
       <h1></h1>
-      <Paper style={{ height: 300 }} elevation={8}>
+      <Paper style={{ height: 500, width: 600 }} elevation={8}>
         <Container fluid>
           <Form onSubmit={handleSubmit}>
+
             <Row className="mb-3">
               <Form.Group as={Col} controlId="formGridEmail">
                 <Form.Label>Adresa de email</Form.Label>
@@ -188,7 +189,7 @@ function Register() {
               </Form.Group>
             </Row>
 
-            <Row className="mb-3">
+            <Row>
               <Form.Group as={Col} controlId="formGridCNP">
                 <Form.Label>Cod Numeric Personal</Form.Label>
                 <Form.Control
@@ -201,7 +202,9 @@ function Register() {
                   maxLength={13}
                 />
               </Form.Group>
+            </Row>
 
+            <Row className="mb-3">
               <Form.Group as={Col} controlId="formGridSex">
                 <Form.Label>Sex</Form.Label>
                 <Form.Select disabled defaultValue="F" value={sex}>
@@ -237,10 +240,11 @@ function Register() {
               </Form.Group>
             </Row>
 
-            <Row className="mb-3">
+            <center className="mb-3">
               <Form.Group as={Col}>
                 <Form.Check
                   required
+                  className="d-flex justify-content-center"
                   name="terms"
                   label="Agree to terms and conditions"
                   feedbackTooltip
@@ -251,6 +255,7 @@ function Register() {
 
               <Button
                 as={Col}
+                className="btn btn-primary m-2"
                 variant="primary"
                 type="submit"
                 onClick={(e) => {
@@ -262,6 +267,7 @@ function Register() {
 
               <Button
                 as={Col}
+                className="btn btn-primary m-2"
                 variant="primary"
                 onClick={(e) => {
                   routeChange("/login");
@@ -269,7 +275,7 @@ function Register() {
               >
                 Login
               </Button>
-            </Row>
+            </center>
 
             <Row className="mb-3">
               <p>{announcer}</p>

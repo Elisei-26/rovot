@@ -67,7 +67,7 @@ const Login = () => {
           if (response.exists()) {
             if (response.data()._password == password) {
               Cookies.set("account", email, { expires: 1 });
-              routeChange("/home");
+              routeChange("/vot");
             } else setAnnouncer("Status: Invalid password");
           } else
             setAnnouncer(
@@ -83,7 +83,7 @@ const Login = () => {
   return (
     <center>
       <h1></h1>
-      <Paper style={{ height: 128 }} elevation={8}>
+      <Paper style={{ width: 600, height: 150 }} elevation={8}>
         <Container fluid>
           <Form onSubmit={handleSubmit}>
             <Row className="mb-3">
@@ -111,6 +111,7 @@ const Login = () => {
             <Row className="mb-3">
               <Button
                 as={Col}
+                className="btn btn-primary m-2"
                 variant="primary"
                 type="submit"
                 onClick={(e) => {
@@ -131,6 +132,7 @@ const Login = () => {
               </Form.Group>
               <Button
                 as={Col}
+                className="btn btn-primary m-2"
                 variant="primary"
                 type="submit"
                 onClick={(e) => {

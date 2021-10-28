@@ -51,7 +51,7 @@ const Vot = () => {
     updateDoc(doc(collection(db, "users"), Cookies.get("account")), {
       _votStatus: n,
     }).then((r) => {
-      routeChange("");
+      routeChange("/vot");
     });
   }
 
@@ -69,7 +69,7 @@ const Vot = () => {
           </h1>
           <p>Votul a fost deja trimis!</p>
           <button type="button" className="btn btn-ligth btn-outline-info m-4">
-            <a href="/home">Home</a>
+            <a href="/logout">Log out</a>
           </button>
         </Paper>
       </center>
@@ -121,7 +121,7 @@ const Vot = () => {
         </Grid>
       </Grid>
       <button type="button" className="btn btn-outline-primary m-4">
-        <a href="/home">Home</a>
+        <a href="/logout">Log out</a>
       </button>
     </center>
   );
