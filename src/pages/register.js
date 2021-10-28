@@ -1,9 +1,9 @@
-import { React, useState, Component } from "react";
+import { React, useState } from "react";
 import { Row, Form, Col, Button, Container } from "react-bootstrap";
 import DatePicker from "react-datepicker";
-import LinkContainer from "react-router-bootstrap";
 import { Paper } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
+import RovotTitle from "../elements/rovotTitle";
 
 import { collection, doc, setDoc } from "firebase/firestore";
 import db from "../firebase";
@@ -38,14 +38,8 @@ function Register() {
     return (
       <center>
         <h1></h1>
-        <Paper style={{ width: 1000 }} elevation={8}>
-          <h1 size="10">
-            <font color="blue">R</font>
-            <font color="blue">o</font>
-            <font color="#cccc00">V</font>
-            <font color="red">o</font>
-            <font color="red">t</font>
-          </h1>
+        <Paper style={{ width: 600 }} elevation={8}>
+          <RovotTitle/>
           <p>Esti deja logat!</p>
           <button type="button" className="btn btn-ligth btn-outline-info m-4">
             <a href="/home">Home</a>
@@ -141,14 +135,15 @@ function Register() {
   return (
     <center>
       <h1></h1>
-      <Paper style={{ height: 500, width: 600 }} elevation={8}>
+      <RovotTitle/>
+      <Paper style={{ height: 432, width: 600 }} elevation={8}>
         <Container fluid>
           <Form onSubmit={handleSubmit}>
-
             <Row className="mb-3">
               <Form.Group as={Col} controlId="formGridEmail">
                 <Form.Label>Adresa de email</Form.Label>
                 <Form.Control
+                  required
                   type="email"
                   placeholder="exemplu@adresa.com"
                   value={email}
@@ -159,6 +154,7 @@ function Register() {
               <Form.Group as={Col} controlId="formGridName">
                 <Form.Label>Nume complet</Form.Label>
                 <Form.Control
+                  required
                   type="text"
                   placeholder="Popescu Ioan"
                   value={name}
@@ -171,6 +167,7 @@ function Register() {
               <Form.Group as={Col} controlId="formGridPassword">
                 <Form.Label>Parola</Form.Label>
                 <Form.Control
+                  required
                   type="password"
                   placeholder="Parola"
                   value={password}
@@ -181,6 +178,7 @@ function Register() {
               <Form.Group as={Col} controlId="formGridConfirmPassword">
                 <Form.Label>Confirmare parola</Form.Label>
                 <Form.Control
+                  required
                   type="password"
                   placeholder="Parola"
                   value={passwordConfirm}
@@ -189,10 +187,11 @@ function Register() {
               </Form.Group>
             </Row>
 
-            <Row>
+            <Row className="mb-3">
               <Form.Group as={Col} controlId="formGridCNP">
                 <Form.Label>Cod Numeric Personal</Form.Label>
                 <Form.Control
+                  required
                   placeholder="1223344550006"
                   value={cnp}
                   onChange={(e) => {
@@ -244,7 +243,7 @@ function Register() {
               <Form.Group as={Col}>
                 <Form.Check
                   required
-                  className="d-flex justify-content-center"
+                  inline={true}
                   name="terms"
                   label="Agree to terms and conditions"
                   feedbackTooltip
