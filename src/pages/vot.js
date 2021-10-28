@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Paper, Grid } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
-import RovotTitle from "../elements/rovotTitle";
+import { Paper } from "@material-ui/core";
 import { Row, Form, Col, Button, Container } from "react-bootstrap";
+import Cookies from "js-cookie";
+import uuid from "react-uuid";
+import RovotTitle from "../elements/rovotTitle";
+
 import {
   collection,
   doc,
@@ -11,10 +14,8 @@ import {
   setDoc,
   updateDoc,
 } from "firebase/firestore";
-
-import uuid from "react-uuid";
 import db from "../firebase";
-import Cookies from "js-cookie";
+
 
 function VoteCard(props) {
   let selection = props.selection;
@@ -61,7 +62,7 @@ const Vot = () => {
 
   function updateSelection(sel) {
     setSelection(sel);
-    forceUpdate(); //foarte naspa, dont do this
+    forceUpdate(); //bad bad bad, trebuie schimbat aici, nu am avut vreme'
   }
 
   const history = useHistory();
@@ -155,22 +156,18 @@ const Vot = () => {
     });
     const classicWinner =
       votanti[0][singleVotes.indexOf(Math.max(...singleVotes))];
-    //console.log(singleVotes)
-
-    const alternativeLoser =
+    const classicLoser =
       votanti[0][singleVotes.indexOf(Math.min(...singleVotes))];
-    var alternativeTotalVotes = singleVotes;
+
+    var alternativeTotalVotes = [...singleVotes];
     votes.forEach((vote) => {
-      for (var i = 0; i < 3; i++) {
-        if (vote[i] == alternativeLoser) {
-          for (var j = 0; j < 3; j++) {
-            if (vote[i + 1] == votanti[0][j]) alternativeTotalVotes[j]++;
-          }
+      if (vote[0] == classicLoser) {
+        for (var j = 0; j < 3; j++) {
+          if (vote[1] == votanti[0][j]) alternativeTotalVotes[j]++;
         }
       }
     });
 
-    //console.log(alternativeTotalVotes);
     const alternativeWinner =
       votanti[0][singleVotes.indexOf(Math.max(...singleVotes))];
 
@@ -181,7 +178,7 @@ const Vot = () => {
           <RovotTitle />
           <p>Votul a fost deja trimis, acestea sunt rezultatele actuale: </p>
           <Row>
-          <Form.Group as={Col}>
+            <Form.Group as={Col}>
               <h6>Dupa votul clasic:</h6>
               <h6>
                 {votanti[0][0]}: {singleVotes[0]}
@@ -192,7 +189,7 @@ const Vot = () => {
               <h6>
                 {votanti[0][2]}: {singleVotes[2]}
               </h6>
-              </Form.Group>
+            </Form.Group>
             <Form.Group as={Col}>
               <h6>Dupa votul alternativ:</h6>
               <h6>
@@ -202,7 +199,7 @@ const Vot = () => {
                 ] - singleVotes[singleVotes.indexOf(Math.max(...singleVotes))]}
                 )
               </h6>
-              </Form.Group>
+            </Form.Group>
           </Row>
           <Button
             className="btn btn-primary m-2"

@@ -1,15 +1,15 @@
 import { React, useState } from "react";
-import { Row, Form, Col, Button, Container } from "react-bootstrap";
-import DatePicker from "react-datepicker";
-import { Paper } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
+import { Row, Form, Col, Button, Container } from "react-bootstrap";
+import { Paper } from "@material-ui/core";
+import Cookies from "js-cookie";
+import DatePicker from "react-datepicker";
 import RovotTitle from "../elements/rovotTitle";
 
 import { collection, doc, setDoc } from "firebase/firestore";
 import db from "../firebase";
 
 import judete from "../constData";
-import Cookies from "js-cookie";
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -54,25 +54,19 @@ function Register() {
 
     if (email == "" || name == "" || password == "")
       setAnnouncer("Error: no field can be empty");
-    else if (
-      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
-        email
-      ) == false
-    )
+    else if(name.length < 6)
+      setAnnouncer("Error: name must be at least 6 characters long");
+    else if (!/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email))
       setAnnouncer("Error: invalid email address");
-    else if (
-      /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/.test(password) ==
-      false
-    )
-      setAnnouncer(
-        "Error: password must be at least 6 characters long and it must include a digit and a symbol"
-      );
-    else if (!cnpverified) setAnnouncer("Error: CNP is not valid.");
+    else if (!/^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[*.!@$%^&(){}[\]:;<>,.?\/~_+-=|\\]).{6,}$/.test(password))
+      setAnnouncer("Error: password must be at least 6 characters long and it must include a digit and a symbol");
+    else if (!cnpverified) 
+      setAnnouncer("Error: CNP is not valid.");
     else if (password != passwordConfirm)
       setAnnouncer("Error: passwords don't match");
-    else if (!agreed) setAnnouncer("Error: you must agree to the terms");
-    else {
-      //everything is alright
+    else if (!agreed) 
+      setAnnouncer("Error: you must agree to the terms");
+    else {//everything is alright
       try {
         setAnnouncer("Status: Registering you...");
         setDoc(doc(collection(db, "users"), email), {

@@ -1,11 +1,9 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import { Paper } from "@material-ui/core";
 import { Button } from "react-bootstrap";
-import RovotTitle from "../elements/rovotTitle";
-
-import { useHistory } from "react-router-dom";
-
 import Cookies from "js-cookie";
+import RovotTitle from "../elements/rovotTitle";
 
 function Home() {
   const account = Cookies.get("account");

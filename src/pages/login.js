@@ -2,12 +2,11 @@ import { React, useState } from "react";
 import { Row, Form, Col, Button, Container } from "react-bootstrap";
 import { Paper } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
+import Cookies from "js-cookie";
 import RovotTitle from "../elements/rovotTitle";
 
 import { doc, getDoc } from "firebase/firestore";
 import db from "../firebase";
-
-import Cookies from "js-cookie";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -50,19 +49,10 @@ const Login = () => {
 
     if (email == "" || password == "")
       setAnnouncer("Error: no field can be empty");
-    else if (
-      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
-        email
-      ) == false
-    )
+    else if (!/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email))
       setAnnouncer("Error: invalid email address");
-    else if (
-      /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/.test(password) ==
-      false
-    )
-      setAnnouncer(
-        "Error: password must be at least 6 characters long and it must include a digit and a symbol"
-      );
+    else if (!/^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[*.!@$%^&(){}[\]:;<>,.?\/~_+-=|\\]).{6,}$/.test(password))
+      setAnnouncer("Error: password must be at least 6 characters long and it must include a digit and a symbol");
     else {
       try {
         getDoc(doc(db, "users", email)).then((response) => {
