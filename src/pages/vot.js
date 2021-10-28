@@ -200,9 +200,10 @@ const Vot = () => {
     <center>
       <h1></h1>
       <RovotTitle />
-      <Paper elevation={8}>
+      <Paper elevation={8} style={{ width: 1100 }}>
         <Container fluid>
           <Row className="mb-3">
+            <h1></h1>
             <Form.Group as={Col}>
               <VoteCard partid={votanti[1][0]} candidat={votanti[0][0]} index={0} selection={selection} setSelection={updateSelection}/>
             </Form.Group>
