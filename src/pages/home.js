@@ -20,8 +20,10 @@ function Home() {
     <center>
       <h1></h1>
       <Paper style={{ width: 600 }} elevation={8}>
-        <RovotTitle/>
-        <p>Platforma electronica de sondaje oficiale pentru cetatenii romani.</p>
+        <RovotTitle />
+        <p>
+          Platforma electronica de sondaje oficiale pentru cetatenii romani.
+        </p>
         {account === undefined ? (
           <div>
             <Button

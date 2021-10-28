@@ -39,7 +39,7 @@ function Register() {
       <center>
         <h1></h1>
         <Paper style={{ width: 600 }} elevation={8}>
-          <RovotTitle/>
+          <RovotTitle />
           <p>Esti deja logat!</p>
           <button type="button" className="btn btn-ligth btn-outline-info m-4">
             <a href="/home">Home</a>
@@ -135,11 +135,12 @@ function Register() {
   return (
     <center>
       <h1></h1>
-      <RovotTitle/>
-      <Paper style={{ height: 432, width: 600 }} elevation={8}>
+      <RovotTitle />
+      <Paper style={{ height: 435, width: 600 }} elevation={8}>
         <Container fluid>
           <Form onSubmit={handleSubmit}>
             <Row className="mb-3">
+              <h1></h1>
               <Form.Group as={Col} controlId="formGridEmail">
                 <Form.Label>Adresa de email</Form.Label>
                 <Form.Control

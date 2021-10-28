@@ -22,7 +22,7 @@ function Home() {
     <center>
       <h1></h1>
       <Paper style={{ width: 600 }} elevation={8}>
-        <RovotTitle/>
+        <RovotTitle />
         {account == undefined ? (
           <div>
             <p>Esti delogat!</p>

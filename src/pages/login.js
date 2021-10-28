@@ -28,7 +28,7 @@ const Login = () => {
       <center>
         <h1></h1>
         <Paper style={{ width: 600 }} elevation={8}>
-          <RovotTitle/>
+          <RovotTitle />
           <p>Esti deja logat!</p>
           <Button
             as={Col}
@@ -85,11 +85,12 @@ const Login = () => {
   return (
     <center>
       <h1></h1>
-      <RovotTitle/>
-      <Paper style={{ width: 600, height: 150 }} elevation={8}>
+      <RovotTitle />
+      <Paper style={{ width: 600, height: 155 }} elevation={8}>
         <Container fluid>
           <Form onSubmit={handleSubmit}>
             <Row className="mb-3">
+              <h1></h1>
               <Form.Group as={Col} controlId="formGridEmail">
                 <Form.Label>Email</Form.Label>
                 <Form.Control

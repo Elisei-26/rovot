@@ -23,18 +23,3 @@ const Webpages = () => {
 };
 
 export default Webpages;
-
-/*
-Ca sa mai adaugi o pagina:
-
-Creezi o pagina normala in src/pages/
-
-Si aici in fisier, ii dai import:
-import Home from './home';
-import ObiectPaginamea from './paginamea';
-
-Si adaugi pe linia 15:
-
-<Route path = "/login" component = {Login} />
-<Route path = "/paginamea" component = {ObiectPaginamea} />
-*/
