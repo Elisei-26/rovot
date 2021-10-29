@@ -2,11 +2,11 @@ import { React, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Row, Form, Col, Button, Container } from "react-bootstrap";
 import { Paper } from "@material-ui/core";
-import Cookies from "js-cookie";
+import Cookies, { get } from "js-cookie";
 import DatePicker from "react-datepicker";
 import RovotTitle from "../elements/rovotTitle";
 
-import { collection, doc, setDoc } from "firebase/firestore";
+import { collection, doc, setDoc, getDocs, getDoc } from "firebase/firestore";
 import db from "../firebase";
 
 import judete from "../constData";
@@ -69,19 +69,38 @@ function Register() {
     else {//everything is alright
       try {
         setAnnouncer("Status: Registering you...");
-        setDoc(doc(collection(db, "users"), email), {
-          _email: email,
-          _name: name,
-          _password: password,
-          _cnp: cnp,
-          _sex: sex,
-          _judet: judet,
-          _birthDate: date,
-          _votStatus: "None",
-        }).then((r) => {
-          alert("inregistrat!");
-          routeChange("");
-        });
+        getDoc(doc(db, "users", email)).then((response) => {
+          if(response.exists())
+            setAnnouncer("Error: email already registered");
+          else {
+            getDocs(collection(db, "users")).then((users) => {
+              var cnpFound = false;
+              users.forEach((doc) => {
+                cnpFound = (cnp === doc.data()._cnp)
+                console.log(cnp)
+                console.log(doc.data()._cnp)
+              });
+
+              if(cnpFound)
+                setAnnouncer("Error: couldn't register you");
+              else {
+                setDoc(doc(collection(db, "users"), email), {
+                  _email: email,
+                  _name: name,
+                  _password: password,
+                  _cnp: cnp,
+                  _sex: sex,
+                  _judet: judet,
+                  _birthDate: date,
+                  _votStatus: "None",
+                }).then((r) => {
+                  alert("inregistrat!");
+                  routeChange("");
+                });
+              }
+            });
+          }
+        })
       } catch (e) {
         setAnnouncer("Internal error: user not registered");
       }

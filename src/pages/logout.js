@@ -37,16 +37,6 @@ function Logout() {
             variant="primary"
             type="submit"
             onClick={(e) => {
-              routeChange("/register");
-            }}
-          >
-            Register
-          </Button>
-          <Button
-            className="btn btn-primary m-2"
-            variant="primary"
-            type="submit"
-            onClick={(e) => {
               routeChange("/login");
             }}
           >
